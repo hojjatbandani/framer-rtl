@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="40" fill="#050816"/>
+  <rect x="56" y="56" width="1088" height="518" rx="28" fill="url(#paint0_linear)" stroke="rgba(255,255,255,0.16)"/>
+  <rect x="108" y="126" width="298" height="18" rx="9" fill="#F5F7FF" fill-opacity="0.92"/>
+  <rect x="108" y="170" width="430" height="14" rx="7" fill="#9EA7C5"/>
+  <rect x="108" y="214" width="360" height="14" rx="7" fill="#9EA7C5"/>
+  <rect x="108" y="284" width="260" height="168" rx="24" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.16)"/>
+  <rect x="410" y="284" width="282" height="82" rx="24" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.16)"/>
+  <rect x="410" y="390" width="282" height="62" rx="24" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.16)"/>
+  <circle cx="938" cy="346" r="122" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.18)"/>
+  <path d="M938 246C985.2 246 1024 284.8 1024 332C1024 379.2 985.2 418 938 418C890.8 418 852 379.2 852 332C852 284.8 890.8 246 938 246Z" fill="url(#paint1_linear)"/>
+  <defs>
+    <linearGradient id="paint0_linear" x1="56" y1="56" x2="1144" y2="574" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1128"/>
+      <stop offset="1" stop-color="#050816"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="852" y1="246" x2="1024" y2="418" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C8CFF"/>
+      <stop offset="1" stop-color="#3DD9C8"/>
+    </linearGradient>
+  </defs>
+</svg>
