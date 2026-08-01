@@ -1,23 +1,65 @@
 'use client';
 
+import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Spark } from '@/components/icons';
-import { EASE, Magnetic, Tilt, TextRotator, WordReveal } from '@/components/motion';
-import { CAL_LINK } from '@/lib/constants';
+import { ArrowRight } from '@/components/icons';
+import { EASE, Magnetic, TextRotator, VerticalMarquee, WordReveal } from '@/components/motion';
+import { TemplatePreview } from '@/components/TemplatePreview';
+import { TEMPLATE_FILTER_EVENT, servicesHref } from '@/lib/constants';
+import { showcaseColumns, templateById, templateKinds, type TemplateKind } from '@/lib/templates';
 import type { Dictionary } from '@/lib/dictionaries';
+import type { Locale } from '@/lib/i18n';
 
-const BARS = [38, 52, 44, 68, 58, 82, 74, 96];
+const CHIP_KINDS = templateKinds.slice(0, 6);
 
-export function Hero({ t }: { t: Dictionary['hero'] }) {
+function ShowcaseCard({ id, name, price }: { id: string; name: string; price: number }) {
+  const meta = templateById(id);
+  if (!meta) return null;
+
+  return (
+    <div className="sc-card">
+      <TemplatePreview kind={meta.kind} accent={meta.accent} />
+      <div className="sc-foot">
+        <span className="sc-name">{name}</span>
+        <span className="sc-price" dir="ltr">
+          ${price}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export function Hero({
+  locale,
+  t,
+  tc
+}: {
+  locale: Locale;
+  t: Dictionary['hero'];
+  tc: Dictionary['templates'];
+}) {
   const reduced = useReducedMotion();
+
+  const jumpToCatalog = (kind: TemplateKind) => {
+    window.dispatchEvent(new CustomEvent(TEMPLATE_FILTER_EVENT, { detail: kind }));
+    document.getElementById('templates')?.scrollIntoView({
+      behavior: reduced ? 'auto' : 'smooth',
+      block: 'start'
+    });
+  };
+
+  const column = (ids: string[]) =>
+    ids.map((id) => (
+      <ShowcaseCard key={id} id={id} name={tc.items[id as keyof typeof tc.items].name} price={templateById(id)!.price} />
+    ));
 
   return (
     <section className="hero">
       <div className="container hero-inner">
-        <div>
+        <div className="hero-copy">
           <motion.span
             className="eyebrow"
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
           >
@@ -26,159 +68,84 @@ export function Hero({ t }: { t: Dictionary['hero'] }) {
           </motion.span>
 
           <h1 className="h-display hero-title">
-            <WordReveal text={t.titleLead} delay={0.1} />{' '}
+            <WordReveal text={t.titleLead} delay={0.08} />{' '}
             <TextRotator words={t.titleRotating} />
             <br />
-            <WordReveal text={t.titleTrail} delay={0.35} />
+            <WordReveal text={t.titleTrail} delay={0.3} />
           </h1>
 
           <motion.p
             className="lede"
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5, ease: EASE }}
+            transition={{ duration: 0.7, delay: 0.45, ease: EASE }}
           >
             {t.subtitle}
           </motion.p>
 
           <motion.div
             className="hero-actions"
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.62, ease: EASE }}
+            transition={{ duration: 0.7, delay: 0.56, ease: EASE }}
           >
             <Magnetic>
-              <a href="#templates" className="btn btn-primary">
+              <a href="#templates" className="btn btn-primary btn-lg">
                 {t.ctaPrimary}
                 <ArrowRight size={17} className="arrow" />
               </a>
             </Magnetic>
-            <Magnetic strength={0.18}>
-              <a href={CAL_LINK} target="_blank" rel="noreferrer" className="btn btn-ghost">
+            <Magnetic strength={0.16}>
+              <Link href={servicesHref(locale)} className="btn btn-ghost btn-lg">
                 {t.ctaSecondary}
-              </a>
+              </Link>
             </Magnetic>
           </motion.div>
 
-          <motion.p
-            className="hero-collab"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+          <motion.div
+            className="hero-jump"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.7, ease: EASE }}
           >
-            <span className="muted">{t.collab.label}</span>{' '}
-            <a href={CAL_LINK} target="_blank" rel="noreferrer" className="hero-collab-link">
-              {t.collab.cta}
-            </a>
-          </motion.p>
+            <span className="hero-jump-label">{t.filterHint}</span>
+            <div className="hero-jump-chips">
+              {CHIP_KINDS.map((kind) => (
+                <button key={kind} type="button" className="mini-chip" onClick={() => jumpToCatalog(kind)}>
+                  {tc.categories[kind]}
+                </button>
+              ))}
+            </div>
+          </motion.div>
 
-          <div className="hero-stats">
-            {t.stats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.75 + i * 0.08, ease: EASE }}
-              >
-                <div className="stat-value">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
-              </motion.div>
+          <motion.ul
+            className="hero-trust"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.8, ease: EASE }}
+          >
+            {t.trust.map((item) => (
+              <li key={item.label}>
+                <strong dir="ltr">{item.value}</strong>
+                <span>{item.label}</span>
+              </li>
             ))}
-          </div>
+          </motion.ul>
         </div>
 
         <motion.div
-          className="hero-visual"
-          initial={{ opacity: 0, y: 40, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1, delay: 0.25, ease: EASE }}
+          className="hero-showcase"
+          aria-hidden="true"
+          initial={{ opacity: 0, y: 36 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
         >
-          <Tilt className="panel surface">
-            <div className="panel-bar">
-              <div className="panel-dots">
-                <span />
-                <span />
-                <span />
-              </div>
-              <strong style={{ fontSize: '0.8rem', fontWeight: 560 }}>{t.panel.title}</strong>
-              <span className="panel-status">
-                <span className="pulse" />
-                {t.panel.status}
-              </span>
-            </div>
-
-            <div className="panel-body">
-              <div className="panel-tabs">
-                {t.panel.tabs.map((tab, i) => (
-                  <span key={tab} className="panel-tab" data-active={i === 0}>
-                    {tab}
-                  </span>
-                ))}
-              </div>
-
-              <div className="panel-metric">
-                {/* dir="ltr" keeps "+48%" from being reordered by the bidi algorithm in RTL */}
-                <strong dir="ltr">{t.panel.metricValue}</strong>
-                <span className="muted" style={{ fontSize: '0.85rem' }}>
-                  {t.panel.metricLabel}
-                </span>
-              </div>
-
-              <div className="panel-chart">
-                {BARS.map((height, i) => (
-                  <motion.i
-                    key={i}
-                    style={{ height: `${height}%` }}
-                    initial={{ scaleY: 0, opacity: 0 }}
-                    animate={{ scaleY: 1, opacity: 1 }}
-                    transition={{ duration: reduced ? 0.2 : 0.8, delay: 0.6 + i * 0.06, ease: EASE }}
-                  />
-                ))}
-              </div>
-
-              <div className="panel-grid">
-                {t.panel.cards.map((card) => (
-                  <div key={card.title} className="panel-card">
-                    <span dir="ltr">{card.tag}</span>
-                    <strong>{card.title}</strong>
-                    <div className="bars">
-                      <i />
-                      <i />
-                      <i />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Tilt>
-
-          <motion.div
-            className="float-chip float-chip-a"
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1, y: reduced ? 0 : [0, -8, 0] }}
-            transition={{
-              opacity: { duration: 0.6, delay: 1 },
-              scale: { duration: 0.6, delay: 1, ease: EASE },
-              y: { duration: 5, repeat: Infinity, ease: 'easeInOut' }
-            }}
-          >
-            <Spark style={{ color: 'var(--blue-soft)' }} />
-            {t.chipRating}
-          </motion.div>
-
-          <motion.div
-            className="float-chip float-chip-b"
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1, y: reduced ? 0 : [0, 9, 0] }}
-            transition={{
-              opacity: { duration: 0.6, delay: 1.15 },
-              scale: { duration: 0.6, delay: 1.15, ease: EASE },
-              y: { duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }
-            }}
-          >
-            <span className="pulse" />
-            {t.chipDelivery}
-          </motion.div>
+          <div className="showcase-stage">
+            <VerticalMarquee speed={reduced ? 0 : 52}>{column(showcaseColumns[0])}</VerticalMarquee>
+            <VerticalMarquee speed={reduced ? 0 : 62} reverse className="showcase-lag">
+              {column(showcaseColumns[1])}
+            </VerticalMarquee>
+          </div>
         </motion.div>
       </div>
     </section>

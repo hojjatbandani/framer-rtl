@@ -3,16 +3,16 @@ import { Ambient } from '@/components/sections/Ambient';
 import { Navbar } from '@/components/sections/Navbar';
 import { Hero } from '@/components/sections/Hero';
 import { LogoMarquee } from '@/components/sections/LogoMarquee';
-import { Services } from '@/components/sections/Services';
 import { Templates } from '@/components/sections/Templates';
-import { About } from '@/components/sections/About';
-import { Process } from '@/components/sections/Process';
+import { Included } from '@/components/sections/Included';
+import { ServicesTeaser } from '@/components/sections/ServicesTeaser';
+import { Steps } from '@/components/sections/Steps';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { Faq } from '@/components/sections/Faq';
 import { CtaBand } from '@/components/sections/CtaBand';
-import { Contact } from '@/components/sections/Contact';
 import { Footer } from '@/components/sections/Footer';
 import { getDictionary } from '@/lib/dictionaries';
+import { homeHref, servicesHref } from '@/lib/constants';
 import { isLocale } from '@/lib/i18n';
 
 export default function HomePage({ params }: { params: { locale: string } }) {
@@ -23,21 +23,32 @@ export default function HomePage({ params }: { params: { locale: string } }) {
   return (
     <>
       <Ambient />
-      <Navbar locale={locale} t={t.nav} />
+      <Navbar locale={locale} t={t.nav} page="home" />
 
       <main className="page">
-        <Hero t={t.hero} />
+        <Hero locale={locale} t={t.hero} tc={t.templates} />
         <LogoMarquee t={t.marquee} locale={locale} />
-        <Services t={t.services} />
-        <Templates t={t.templates} />
-        <About t={t.about} />
-        <Process t={t.process} />
+        <Templates locale={locale} t={t.templates} />
+        <Included t={t.included} />
+        <ServicesTeaser locale={locale} t={t.servicesTeaser} />
+        <Steps
+          id="how"
+          badge={t.steps.badge}
+          title={t.steps.title}
+          subtitle={t.steps.subtitle}
+          steps={t.steps.items}
+        />
         <Testimonials t={t.testimonials} />
         <Faq t={t.faq} />
-        <CtaBand t={t.cta} />
-        <Contact t={t.contact} />
-        <Footer t={t.footer} nav={t.nav} />
+        <CtaBand
+          title={t.cta.title}
+          desc={t.cta.desc}
+          primary={{ label: t.cta.primary, href: homeHref(locale, 'templates') }}
+          secondary={{ label: t.cta.secondary, href: servicesHref(locale) }}
+        />
       </main>
+
+      <Footer locale={locale} t={t.footer} nav={t.nav} />
     </>
   );
 }

@@ -10,7 +10,11 @@ export type IconName =
   | 'grid'
   | 'gauge'
   | 'bug'
-  | 'shield';
+  | 'shield'
+  | 'rocket'
+  | 'compass'
+  | 'refresh'
+  | 'globe';
 
 type Props = SVGProps<SVGSVGElement> & { size?: number };
 
@@ -105,6 +109,32 @@ const paths: Record<IconName, JSX.Element> = {
       <path d="M12 3 20 6v6c0 4.5-3.2 7.9-8 9-4.8-1.1-8-4.5-8-9V6l8-3Z" />
       <path d="m9 12 2 2 4-4" />
     </>
+  ),
+  rocket: (
+    <>
+      <path d="M12 2.5c3.2 2.2 5 5.6 5 9.4l-2.4 3.6H9.4L7 11.9c0-3.8 1.8-7.2 5-9.4Z" />
+      <circle cx="12" cy="10" r="1.8" />
+      <path d="M9.4 15.5 7 17.2c-.7.5-1.1 1.3-1.1 2.2v1.1l3-1.1M14.6 15.5l2.4 1.7c.7.5 1.1 1.3 1.1 2.2v1.1l-3-1.1" />
+    </>
+  ),
+  compass: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m15.2 8.8-1.9 4.5-4.5 1.9 1.9-4.5 4.5-1.9Z" />
+    </>
+  ),
+  refresh: (
+    <>
+      <path d="M20 12a8 8 0 1 1-2.6-5.9" />
+      <path d="M20 4v4.5h-4.5" />
+    </>
+  ),
+  globe: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3.2 9.5h17.6M3.2 14.5h17.6" />
+      <path d="M12 3c2.4 2.6 3.6 5.6 3.6 9S14.4 18.4 12 21c-2.4-2.6-3.6-5.6-3.6-9S9.6 5.6 12 3Z" />
+    </>
   )
 };
 
@@ -136,6 +166,31 @@ export const Search = (props: Props) => (
 export const Plus = (props: Props) => (
   <Base size={16} {...props}>
     <path d="M12 5v14M5 12h14" />
+  </Base>
+);
+
+export const Check = (props: Props) => (
+  <Base size={16} strokeWidth={2} {...props}>
+    <path d="m5 12.5 4.5 4.5L19 7" />
+  </Base>
+);
+
+export const Dash = (props: Props) => (
+  <Base size={16} {...props}>
+    <path d="M7 12h10" />
+  </Base>
+);
+
+export const Calendar = (props: Props) => (
+  <Base size={16} {...props}>
+    <rect x="3.5" y="5" width="17" height="16" rx="3" />
+    <path d="M3.5 10h17M8 3v4M16 3v4" />
+  </Base>
+);
+
+export const Play = (props: Props) => (
+  <Base size={16} {...props}>
+    <path d="M9 6.5 17 12l-8 5.5V6.5Z" />
   </Base>
 );
 

@@ -3,41 +3,60 @@
 import { motion, useMotionValueEvent, useScroll, useSpring } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Reveal } from '@/components/motion';
-import type { Dictionary } from '@/lib/dictionaries';
 
-export function Process({ t }: { t: Dictionary['process'] }) {
+type Step = { title: string; desc: string };
+
+/**
+ * The scroll-tracked rail. Shared by the home page's buying flow and the
+ * services page's engagement process — same shape, same behaviour.
+ */
+export function Steps({
+  id,
+  badge,
+  title,
+  subtitle,
+  steps
+}: {
+  id?: string;
+  badge: string;
+  title: string;
+  subtitle: string;
+  steps: Step[];
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [reached, setReached] = useState(0);
 
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 65%', 'end 65%'] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 70%', 'end 70%'] });
   const scaleY = useSpring(scrollYProgress, { stiffness: 120, damping: 26, restDelta: 0.001 });
 
   useMotionValueEvent(scrollYProgress, 'change', (value) => {
-    setReached(Math.min(t.steps.length - 1, Math.floor(value * t.steps.length + 0.35)));
+    setReached(Math.min(steps.length - 1, Math.floor(value * steps.length + 0.35)));
   });
 
   return (
-    <section id="process" className="section">
+    <section id={id} className="section">
       <div className="container">
         <Reveal className="section-head">
           <span className="eyebrow">
             <span className="dot" />
-            {t.badge}
+            {badge}
           </span>
-          <h2 className="h-section">{t.title}</h2>
-          <p className="lede">{t.subtitle}</p>
+          <h2 className="h-section">{title}</h2>
+          <p className="lede">{subtitle}</p>
         </Reveal>
 
         <div className="process" ref={ref}>
-          <div className="process-rail">
+          <div className="process-rail" aria-hidden="true">
             <motion.i style={{ scaleY }} />
           </div>
 
-          {t.steps.map((step, i) => (
+          {steps.map((step, i) => (
             <Reveal key={step.title} delay={i * 0.05} className="step-row">
               <span className="step-dot" data-reached={i <= reached} aria-hidden="true" />
               <div className="surface step">
-                <span className="step-num">{String(i + 1).padStart(2, '0')}</span>
+                <span className="step-num" dir="ltr">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
                 <h3>{step.title}</h3>
                 <p>{step.desc}</p>
               </div>

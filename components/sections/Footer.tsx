@@ -1,30 +1,39 @@
-import { Spark } from '@/components/icons';
+import Link from 'next/link';
+import { ArrowUpRight, Spark } from '@/components/icons';
 import { Reveal } from '@/components/motion';
+import { BRAND, CAL_LINK, homeHref, servicesHref } from '@/lib/constants';
 import type { Dictionary } from '@/lib/dictionaries';
+import type { Locale } from '@/lib/i18n';
 
-export function Footer({ t, nav }: { t: Dictionary['footer']; nav: Dictionary['nav'] }) {
+export function Footer({
+  locale,
+  t,
+  nav
+}: {
+  locale: Locale;
+  t: Dictionary['footer'];
+  nav: Dictionary['nav'];
+}) {
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
-          <div>
-            <span className="brand" style={{ marginBottom: 14 }}>
+          <div className="footer-brand">
+            <span className="brand">
               <span className="brand-mark">
                 <Spark style={{ color: '#fff' }} />
               </span>
-              Northstar
+              {BRAND}
             </span>
-            <p className="muted" style={{ maxWidth: '34ch', fontSize: '0.9rem' }}>
-              {t.tagline}
-            </p>
+            <p className="muted">{t.tagline}</p>
           </div>
 
           <div>
             <h4>{t.nav}</h4>
             <ul>
               {nav.links.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href}>{link.label}</a>
+                <li key={link.id}>
+                  <Link href={homeHref(locale, link.id)}>{link.label}</Link>
                 </li>
               ))}
             </ul>
@@ -34,7 +43,9 @@ export function Footer({ t, nav }: { t: Dictionary['footer']; nav: Dictionary['n
             <h4>{t.servicesTitle}</h4>
             <ul>
               {t.servicesList.map((service) => (
-                <li key={service}>{service}</li>
+                <li key={service.id}>
+                  <Link href={servicesHref(locale, service.id)}>{service.label}</Link>
+                </li>
               ))}
             </ul>
           </div>
@@ -51,17 +62,29 @@ export function Footer({ t, nav }: { t: Dictionary['footer']; nav: Dictionary['n
               ))}
             </ul>
           </div>
+
+          <div className="footer-contact">
+            <h4>{t.contactTitle}</h4>
+            <a className="footer-email" href={`mailto:${t.email}`} dir="ltr">
+              {t.email}
+            </a>
+            <p className="muted">{t.responseLabel}</p>
+            <a href={CAL_LINK} target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm">
+              {t.bookCta}
+              <ArrowUpRight size={15} />
+            </a>
+          </div>
         </div>
 
         <Reveal>
           <div className="footer-wordmark" aria-hidden="true">
-            NORTHSTAR
+            {BRAND.toUpperCase()}
           </div>
         </Reveal>
 
         <div className="footer-bottom">
           <span>
-            © {new Date().getFullYear()} Northstar Studio. {t.rights}
+            © {new Date().getFullYear()} {BRAND}. {t.rights}
           </span>
           <span>{t.built}</span>
         </div>

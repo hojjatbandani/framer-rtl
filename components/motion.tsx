@@ -313,6 +313,39 @@ export function Tilt({
 }
 
 /* --------------------------------------------------------------------------
+   VerticalMarquee — the hero's counter-scrolling template columns.
+   -------------------------------------------------------------------------- */
+export function VerticalMarquee({
+  children,
+  speed = 48,
+  reverse = false,
+  className = ''
+}: {
+  children: ReactNode;
+  speed?: number;
+  reverse?: boolean;
+  className?: string;
+}) {
+  const reduced = useReducedMotion();
+  const from = reverse ? '-50%' : '0%';
+  const to = reverse ? '0%' : '-50%';
+
+  return (
+    <div className={`vmarquee ${className}`}>
+      <motion.div
+        className="vmarquee-track"
+        animate={reduced ? undefined : { y: [from, to] }}
+        transition={{ duration: speed, ease: 'linear', repeat: Infinity }}
+      >
+        {children}
+        {/* the seamless second lap */}
+        <span style={{ display: 'contents' }}>{children}</span>
+      </motion.div>
+    </div>
+  );
+}
+
+/* --------------------------------------------------------------------------
    Marquee — seamless infinite scroll, mirrored for RTL.
    -------------------------------------------------------------------------- */
 export function Marquee({

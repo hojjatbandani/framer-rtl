@@ -6,11 +6,11 @@ import { Plus } from '@/components/icons';
 import { EASE, Reveal } from '@/components/motion';
 import type { Dictionary } from '@/lib/dictionaries';
 
-export function Faq({ t }: { t: Dictionary['faq'] }) {
+export function Faq({ t, id = 'faq' }: { t: Dictionary['faq']; id?: string }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="section">
+    <section id={id} className="section">
       <div className="container">
         <Reveal className="section-head" style={{ textAlign: 'center', marginInline: 'auto' }}>
           <span className="eyebrow">
