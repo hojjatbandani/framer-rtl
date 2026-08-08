@@ -3,12 +3,12 @@ import type { TemplateKind } from '@/lib/templates';
 
 export const en = {
   meta: {
-    title: 'Northstar — Production-ready Next.js templates',
+    title: 'framer-rtl — Production-ready RTL-first Next.js templates',
     description:
       'A curated catalog of premium, production-ready Next.js templates for SaaS, agencies, dashboards, stores and more. Buy once, launch today — or have it installed, customized, or built from scratch for you.'
   },
   servicesMeta: {
-    title: 'Services — Installation, customization & custom builds | Northstar',
+    title: 'Services — Installation, customization & custom builds | framer-rtl',
     description:
       'Three ways to get your site live: template installation and setup, deep customization, or a completely custom build from scratch. Fixed quotes, clear timelines, free scoping call.'
   },
@@ -81,8 +81,8 @@ export const en = {
       new: 'New'
     },
     items: {
-      'northstar-saas': {
-        name: 'Northstar SaaS',
+      'nova-saas': {
+        name: 'Nova SaaS',
         tagline: 'Pricing, changelog and docs for an AI analytics product.'
       },
       'pulse-dashboard': {
@@ -239,7 +239,7 @@ export const en = {
       {
         name: 'Mia Chen',
         role: 'Founder, Fluxwave',
-        project: 'Northstar SaaS',
+        project: 'Nova SaaS',
         feedback:
           'I had the pricing page rewritten and deployed the same evening. The code was so tidy I stopped looking for the catch.'
       },
@@ -315,7 +315,7 @@ export const en = {
       { id: 'scratch', label: 'Built from scratch' }
     ],
     contactTitle: 'Contact',
-    email: 'hello@northstar.studio',
+    email: 'hello@framer-rtl.store',
     responseLabel: 'Replies within 24h',
     bookCta: 'Book a 30-min call',
     social: 'Elsewhere',

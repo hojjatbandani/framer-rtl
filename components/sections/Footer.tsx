@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUpRight, Spark } from '@/components/icons';
+import { ArrowUpRight, LogoGlyph } from '@/components/icons';
 import { Reveal } from '@/components/motion';
 import { BRAND, CAL_LINK, homeHref, servicesHref } from '@/lib/constants';
 import type { Dictionary } from '@/lib/dictionaries';
@@ -21,7 +21,7 @@ export function Footer({
           <div className="footer-brand">
             <span className="brand">
               <span className="brand-mark">
-                <Spark style={{ color: '#fff' }} />
+                <LogoGlyph style={{ color: '#fff' }} />
               </span>
               {BRAND}
             </span>

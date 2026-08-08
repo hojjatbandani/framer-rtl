@@ -31,7 +31,7 @@ export type TemplateMeta = {
 
 export const templates: TemplateMeta[] = [
   {
-    id: 'northstar-saas',
+    id: 'nova-saas',
     kind: 'saas',
     price: 89,
     stack: 'Next.js · Tailwind',
@@ -146,7 +146,7 @@ export const templateKinds: TemplateKind[] = [
 
 /** The eight that ride the hero showcase, split into two counter-scrolling columns. */
 export const showcaseColumns: [string[], string[]] = [
-  ['northstar-saas', 'lumen-table', 'summit-agency', 'monarch-folio'],
+  ['nova-saas', 'lumen-table', 'summit-agency', 'monarch-folio'],
   ['pulse-dashboard', 'aurelia-studio', 'halcyon-store', 'vertex-capital']
 ];
 

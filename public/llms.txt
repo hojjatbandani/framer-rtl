@@ -1,0 +1,25 @@
+# framer-rtl
+
+> framer-rtl sells production-ready, RTL-first Next.js website templates and offers done-for-you services (installation, customization, and fully custom builds). Every template ships with clean typed source code, real content, full Arabic/RTL support via CSS logical properties, and a live preview. Buy once, launch the same day.
+
+The site is bilingual: English at /en and Arabic (RTL) at /ar.
+
+## Pages
+
+- [Home — English](https://framer-rtl.store/en): Template catalog (12 templates: SaaS, agency, dashboard, store, restaurant, portfolio and more), what's included with every purchase, how buying works, testimonials and FAQ.
+- [Home — Arabic](https://framer-rtl.store/ar): Same catalog and content, fully right-to-left.
+- [Services — English](https://framer-rtl.store/en/services): Three service tiers — Install & setup ($149), Customization (from $590), Built from scratch (from $2,900) — with a comparison table, process steps, add-ons and FAQ.
+- [Services — Arabic](https://framer-rtl.store/ar/services): Same services page in Arabic.
+
+## Key facts
+
+- Templates are complete deployable Next.js sites, not landing-page mockups; delivered as a Git repository with a setup guide.
+- Standard license covers one live site; multi-site and agency licenses are available.
+- All templates support Arabic and RTL out of the box — the framer-rtl site itself is built the same way.
+- Email support is included with every purchase; replies within 24 hours.
+- Free 30-minute scoping call for services, written quote within 24h, fixed prices, no retainers.
+
+## Contact
+
+- Email: hello@framer-rtl.store
+- Booking: https://cal.com/hojjat-bandani-nnritj/30min

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { ArrowRight, Close, Menu, Spark } from '@/components/icons';
+import { ArrowRight, Close, LogoGlyph, Menu } from '@/components/icons';
 import { EASE, Magnetic } from '@/components/motion';
 import { BRAND, CAL_LINK, homeHref, servicesHref } from '@/lib/constants';
 import { locales, localeMeta, type Locale } from '@/lib/i18n';
@@ -53,7 +53,7 @@ export function Navbar({ locale, t, page = 'home' }: { locale: Locale; t: Dictio
           <nav className="nav">
             <Link href={homeHref(locale)} className="brand" aria-label={BRAND}>
               <span className="brand-mark">
-                <Spark style={{ color: '#fff' }} />
+                <LogoGlyph style={{ color: '#fff' }} />
               </span>
               {BRAND}
             </Link>

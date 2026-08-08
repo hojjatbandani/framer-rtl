@@ -225,3 +225,12 @@ export const Spark = (props: Props) => (
     <path d="M12 2c.7 5 4.3 8.6 9.3 9.3-5 .7-8.6 4.3-9.3 9.3-.7-5-4.3-8.6-9.3-9.3C7.7 10.6 11.3 7 12 2Z" />
   </svg>
 );
+
+/* Brand glyph: three right-aligned text lines — the RTL mark. */
+export const LogoGlyph = (props: Props) => (
+  <svg width={14} height={14} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+    <rect x="4" y="5" width="16" height="3.4" rx="1.7" />
+    <rect x="9.5" y="10.3" width="10.5" height="3.4" rx="1.7" />
+    <rect x="14" y="15.6" width="6" height="3.4" rx="1.7" />
+  </svg>
+);

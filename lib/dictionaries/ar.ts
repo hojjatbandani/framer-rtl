@@ -4,12 +4,12 @@ import type { Dictionary } from './en';
 
 export const ar: Dictionary = {
   meta: {
-    title: 'نورث ستار — قوالب Next.js جاهزة للإنتاج',
+    title: 'framer-rtl — قوالب Next.js جاهزة للإنتاج بدعم RTL كامل',
     description:
       'كتالوج منتقى من قوالب Next.js الاحترافية الجاهزة للإنتاج: SaaS، وكالات، لوحات تحكم، متاجر وغيرها. اشترِ مرة واحدة وانطلق اليوم — أو دعنا نركّبها أو نخصّصها أو نبنيها لك من الصفر.'
   },
   servicesMeta: {
-    title: 'الخدمات — التركيب والتخصيص والبناء من الصفر | نورث ستار',
+    title: 'الخدمات — التركيب والتخصيص والبناء من الصفر | framer-rtl',
     description:
       'ثلاث طرق لإطلاق موقعك: تركيب القالب وإعداده، أو تخصيص عميق، أو بناء كامل من الصفر. أسعار ثابتة ومواعيد واضحة ومكالمة تقييم مجانية.'
   },
@@ -82,8 +82,8 @@ export const ar: Dictionary = {
       new: 'جديد'
     },
     items: {
-      'northstar-saas': {
-        name: 'نورث ستار SaaS',
+      'nova-saas': {
+        name: 'نوفا SaaS',
         tagline: 'صفحات تسعير وسجلّ تحديثات وتوثيق لمنتج تحليلات ذكي.'
       },
       'pulse-dashboard': {
@@ -240,7 +240,7 @@ export const ar: Dictionary = {
       {
         name: 'ميا تشن',
         role: 'مؤسِّسة، فلكس ويف',
-        project: 'نورث ستار SaaS',
+        project: 'نوفا SaaS',
         feedback: 'أعدت كتابة صفحة التسعير ونشرتها في المساء نفسه. الشيفرة كانت مرتبة لدرجة جعلتني أتوقف عن البحث عن عيب خفيّ.'
       },
       {
@@ -312,7 +312,7 @@ export const ar: Dictionary = {
       { id: 'scratch', label: 'البناء من الصفر' }
     ],
     contactTitle: 'تواصل',
-    email: 'hello@northstar.studio',
+    email: 'hello@framer-rtl.store',
     responseLabel: 'الرد خلال 24 ساعة',
     bookCta: 'احجز مكالمة 30 دقيقة',
     social: 'تابعنا',

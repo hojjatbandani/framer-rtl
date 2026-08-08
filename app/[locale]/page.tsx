@@ -20,8 +20,19 @@ export default function HomePage({ params }: { params: { locale: string } }) {
   const locale = params.locale;
   const t = getDictionary(locale);
 
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: t.faq.items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a }
+    }))
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <Ambient />
       <Navbar locale={locale} t={t.nav} page="home" />
 
